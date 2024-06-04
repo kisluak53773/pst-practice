@@ -4,28 +4,21 @@ declare(strict_types=1);
 
 require_once 'vendor/autoload.php';
 
-use App\Model\Cat;
-use App\Model\Dog;
-use App\Model\Bird;
+use PHPMailer\PHPMailer\PHPMailer;
+use App\Mail\EmailSender;
+use Dotenv\Dotenv;
 
-$cat = new Cat();
-$dog = new Dog();
-$bird = new Bird();
+$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
-$cat->eat();
-$cat->makeSound();
-$cat->sleep();
+$mail = new PHPMailer(true);
 
-echo PHP_EOL;
+$mail->isSMTP();                                           
+$mail->Host = $_ENV['SMTP_HOST'];
+$mail->Port = $_ENV['SMTP_PORT'];
+$mail->SMTPAuth = false;
+$mail->SMTPSecure = false;
 
-$dog->eat();
-$dog->makeSound();
-$dog->sleep();
+$mailService = new EmailSender($mail);
 
-echo PHP_EOL;
-
-$bird->eat();
-$bird->makeSound();
-$bird->sleep();
-
-echo PHP_EOL;
+$mailService->greetingsLetter("Hello there", 'Jhon Doe', "alex@gmail.com");
