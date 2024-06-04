@@ -4,28 +4,8 @@ declare(strict_types=1);
 
 require_once 'vendor/autoload.php';
 
-use App\Model\Cat;
-use App\Model\Dog;
-use App\Model\Bird;
+use App\Service\Logger;
 
-$cat = new Cat();
-$dog = new Dog();
-$bird = new Bird();
+$loggerService = new Logger('logs.txt');
 
-$cat->eat();
-$cat->makeSound();
-$cat->sleep();
-
-echo PHP_EOL;
-
-$dog->eat();
-$dog->makeSound();
-$dog->sleep();
-
-echo PHP_EOL;
-
-$bird->eat();
-$bird->makeSound();
-$bird->sleep();
-
-echo PHP_EOL;
+$loggerService->info("loger started");
