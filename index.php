@@ -7,25 +7,23 @@ require_once 'vendor/autoload.php';
 use App\Model\Cat;
 use App\Model\Dog;
 use App\Model\Bird;
+use App\Model\Birdy;
+use App\Model\Catty;
+use App\Model\Doggy;
 
-$cat = new Cat();
-$dog = new Dog();
-$bird = new Bird();
+$animals = [
+    new Cat(),
+    new Dog(),
+    new Bird(),
+    new Catty(),
+    new Doggy(),
+    new Birdy(),
+];
 
-$cat->eat();
-$cat->makeSound();
-$cat->sleep();
-
-echo PHP_EOL;
-
-$dog->eat();
-$dog->makeSound();
-$dog->sleep();
-
-echo PHP_EOL;
-
-$bird->eat();
-$bird->makeSound();
-$bird->sleep();
-
-echo PHP_EOL;
+foreach ($animals as $animal) {
+    echo get_class($animal) . PHP_EOL;
+    $animal->eat();
+    $animal->makeSound();
+    $animal->sleep();
+    echo PHP_EOL;
+}
